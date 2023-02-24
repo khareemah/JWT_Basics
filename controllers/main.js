@@ -24,10 +24,11 @@ const dashboard = (req, res) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const luckyNumber = Math.floor(Math.random() * 100);
     res.status(200).json({
-      msg: `Hello ${decoded.username}, Here is your authorized data, your lucky number is ${luckyNumber}`,
+      msg: `Hello ${decoded.username}`,
+      secret: `Here is your authorized data, your lucky number is ${luckyNumber}`,
     });
   } catch (error) {
-    throw new customAPIError('not authorized to access this route', 400);
+    throw new customAPIError('not authorized to access this route', 401);
   }
 };
 
